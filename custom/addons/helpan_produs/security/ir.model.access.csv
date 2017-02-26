@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpan_produs_helpan_produs,helpan_produs.helpan_produs,model_helpan_produs_helpan_produs,,1,0,0,0
