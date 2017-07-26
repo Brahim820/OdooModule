@@ -26,6 +26,35 @@
 from openerp import _
 
 
+import time
+from openerp.report import report_sxw
+from openerp.osv import osv
+from openerp.tools import amount_to_text_en
+
+class invoice_helpan_report_parser(report_sxw.rml_parse):
+
+    def __init__(self, cr, uid, name, context):
+        super(invoice_helpan_report_parser, self).__init__(
+            cr, uid, name, context=context)
+        self.localcontext.update({
+            'time': time,
+            'convert': self.convert,
+        })
+
+    def convert(self, amount):
+        amt_ro="aa"
+        ## aici trebuie scos
+       ## amt_ro = amount_to_text_ro(amount)
+        return amt_ro
+
+
+class invoice_helpan_report(osv.AbstractModel):
+    _name = 'report_invoice_template'
+    _inherit = 'report.abstract_report'
+    _template = 'report_invoice_template'
+    _wrapped_report_class = invoice_helpan_report_parser
+
+
 to_19 = ('zero',  'unu',   'doi',  'trei', 'patru',   'cinci',   'șase',
          'șapte', 'opt', 'nouă', 'zece',   'unsperezece', 'doisprezece', 'treisprezece',
          'paisprezece', 'cincisprezece', 'șiaisprezece', 'șaptesprezece', 'optsprezece', 'nousăprezece')
@@ -114,5 +143,3 @@ def amount_to_text_ro(number):
         ' și ' + end_word + ' ' + bani_name
 
     return final_result
-
-print amount_to_text_ro(222.96)

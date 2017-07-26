@@ -23,7 +23,7 @@
 
 from lxml import etree
 # in loc de osv.osv ar trebui migrat catre models.Model !
-from models.Model import fields
+from models.Models import fields
 from openerp.osv import  osv
 import openerp.addons.decimal_precision as dp
 from openerp.tools.translate import _

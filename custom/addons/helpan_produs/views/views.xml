@@ -55,5 +55,16 @@
     <menuitem name="Server to list" id="helpan_produs" parent="helpan_produs.menu_2"
               action="helpan_produs.action_server"/>
     -->
+    <!-- Adding the fields from product.product to the screen -->
+        <!--<record id="product_normal_form_view" model="ir.ui.view">-->
+            <!--<field name="name">base.product.defaults.product.form</field>-->
+            <!--<field name="model">product.product</field>-->
+            <!--<field name="inherit_id" ref="product.product_normal_form_view"/>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<field name='default_code' position='before'>-->
+                    <!--<field name="dosar_id"/>-->
+                <!--</field>-->
+            <!--</field>-->
+        <!--</record>-->
   </data>
 </odoo>

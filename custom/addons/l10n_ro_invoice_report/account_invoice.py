@@ -42,17 +42,17 @@ class account_invoice_line(models.Model):
     _inherit = "account.invoice.line"
 
     @api.one
-    @api.depends('price_unit', 'discount', 'invoice_line_tax_id', 'quantity',
+    @api.depends('price_unit', 'discount', 'invoice_line_tax_ids', 'quantity',
                  'product_id', 'invoice_id.partner_id',
                  'invoice_id.currency_id')
     def _compute_price(self):
         price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
-        taxes = self.invoice_line_tax_id.compute_all(
+        taxes = self.invoice_line_tax_ids.compute_all(
             price, self.quantity, product=self.product_id,
             partner=self.invoice_id.partner_id)
         self.price_subtotal = taxes['total']
         self.price_taxes = taxes['total_included'] - taxes['total']
-        taxes_unit = self.invoice_line_tax_id.compute_all(
+        taxes_unit = self.invoice_line_tax_ids.compute_all(
             price, 1, product=self.product_id,
             partner=self.invoice_id.partner_id)
         self.price_unit_without_taxes = taxes_unit['total']
