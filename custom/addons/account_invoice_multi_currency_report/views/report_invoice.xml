@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document_inherit_multi_currency" inherit_id="account.report_invoice_document">
+            <xpath expr="//table[@class='table table-condensed']/thead/tr/th[4]" position="after">
+                <th t-if="o.currency_id != o.company_currency_id" class="text-right">Unit Price <t t-esc="o.company_currency_id.name"></t></th>
+            </xpath>
+            <xpath expr="//table[@class='table table-condensed']/tbody[@class='invoice_tbody']/tr/td[4]" position="after">
+                <td class="text-right" t-if="o.currency_id != o.company_currency_id">
+                    <span t-field="l.price_unit_company_currency"/>
+                </td>
+            </xpath>
+            <xpath expr="//div[@class='page']" position="inside">
+                <div class="row" t-if="o.currency_id != o.company_currency_id">
+                    <div class="col-xs-4 pull-left">
+                        <table class="table table-condensed">
+                            <tr class="border-black">
+                                <td>
+                                    <strong>Currency rate</strong>
+                                    <span> 1 <t t-esc="o.currency_id.name"></t> = <t t-esc="o.currency_converions_rate"></t> <t t-esc="o.company_currency_id.name"></t></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

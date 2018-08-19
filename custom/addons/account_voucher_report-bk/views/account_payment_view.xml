@@ -1,0 +1,18 @@
+<openerp>
+    <data>
+
+        <record id="view_account_payment" model="ir.ui.view">
+            <field name="name">Account Payment</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group/field[@name='payment_date']" position="after">
+                    <field name="reference" placeholder="e.g. 003/10"/>
+                    <field name="check_no" attrs="{'invisible': [('journal_id_type', '!=', 'Bank')]}"/>
+                    <field name="journal_id_type" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>

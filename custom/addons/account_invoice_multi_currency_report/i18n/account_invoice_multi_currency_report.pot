@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_multi_currency_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-26 07:53+0000\n"
+"PO-Revision-Date: 2017-10-26 07:53+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.ui.view,arch_db:account_invoice_multi_currency_report.report_invoice_document_inherit_multi_currency
+msgid "<strong>Currency rate</strong>"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.model,name:account_invoice_multi_currency_report.model_res_currency_rate
+msgid "Currency Rate"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.model.fields,field_description:account_invoice_multi_currency_report.field_account_invoice_currency_converions_rate
+msgid "Currency converions rate"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.model,name:account_invoice_multi_currency_report.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.model,name:account_invoice_multi_currency_report.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.model.fields,field_description:account_invoice_multi_currency_report.field_account_invoice_line_price_unit_company_currency
+msgid "Price company currency"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.model.fields,help:account_invoice_multi_currency_report.field_account_invoice_line_price_unit_company_currency
+msgid "Product's unit price in company's default currency"
+msgstr ""
+
+#. module: account_invoice_multi_currency_report
+#: model:ir.ui.view,arch_db:account_invoice_multi_currency_report.report_invoice_document_inherit_multi_currency
+msgid "Unit Price"
+msgstr ""
+

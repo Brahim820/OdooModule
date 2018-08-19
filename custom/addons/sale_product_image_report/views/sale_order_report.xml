@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_saleorder_document_with_specification" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//p[@id='fiscal_position_remark']" position="after">
+                <div class="row" t-if="doc.print_with_spec is True">
+                    <!--<div class="oe_structure"/>-->
+                    <h2 style="page-break-before:always;">
+                        <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                        <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                        <span t-field="doc.name"/>
+                        <span > Specification</span>
+                    </h2>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Specifications</th>
+                                <th class="text-right">Image</th>
+                            </tr>
+                       </thead>
+                       <tbody class="sale_tbody">
+                            <t t-foreach="doc.order_line" t-as="l">
+                                <tr t-if="l.product_uom_qty">
+                                    <td style="width: 60%;">
+                                       <span t-raw="l.desc_html"/>
+                                    </td>
+                                    <td style="width: 40%;">
+                                        <t t-if="l.product_id.attachment_ids">
+                                            <t t-foreach="l.product_id.attachment_ids" t-as="att_img">
+                                                <span style="float: right;" t-if="att_img.datas" t-field="att_img.datas" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+                                            </t>
+                                        </t>
+                                        <t t-if="not l.product_id.attachment_ids">
+                                            <span style="float: right;" t-if="l.product_id.image" t-field="l.product_id.image" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <!--<div class="oe_structure"/>-->
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>

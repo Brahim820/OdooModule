@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- jobs -->
+        <record id="data_migrate_job_currency" model="data.migrate.jobs">
+            <field name="name">Currencies</field>
+            <field name="code">cur01</field>
+            <field name="description">Migrate Currencies</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="data_migrate_job_country" model="data.migrate.jobs">
+            <field name="name">Countries</field>
+            <field name="code">count01</field>
+            <field name="description">Migrate Countries</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="data_migrate_job_states" model="data.migrate.jobs">
+            <field name="name">Country states</field>
+            <field name="code">states01</field>
+            <field name="description">Migrate Country states</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="data_migrate_job_company" model="data.migrate.jobs">
+            <field name="name">Company</field>
+            <field name="code">comp01</field>
+            <field name="description">Migrate Company and related main data</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="data_migrate_job_users" model="data.migrate.jobs">
+            <field name="name">Users</field>
+            <field name="code">usr01</field>
+            <field name="description">Migrate all users and related main data</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="data_migrate_job_partners_pre" model="data.migrate.jobs">
+            <field name="name">Partners - pre insert</field>
+            <field name="code">part01_pre</field>
+            <field name="description">Migrate related partner's main data </field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="data_migrate_job_partners" model="data.migrate.jobs">
+            <field name="name">Partners</field>
+            <field name="code">part01</field>
+            <field name="description">Migrate Customers, Suppliers and Contacts</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="data_migrate_job_uoms" model="data.migrate.jobs">
+            <field name="name">Units of measure</field>
+            <field name="code">uom01</field>
+            <field name="description">Migrate Units of measure</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="data_migrate_job_products_pre" model="data.migrate.jobs">
+            <field name="name">Products - pre insert</field>
+            <field name="code">prod01_pre</field>
+            <field name="description">Migrate Products related main data</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="data_migrate_job_products" model="data.migrate.jobs">
+            <field name="name">Products</field>
+            <field name="code">prod01</field>
+            <field name="description">Migrate Products (Product templates and Product Variants)</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="data_migrate_job_company_post" model="data.migrate.jobs">
+            <field name="name">Company - post insert</field>
+            <field name="code">comp01_post</field>
+            <field name="description">Migrate Company and related main data after initial transfer is done</field>
+            <field name="sequence">91</field>
+        </record>
+        <record id="data_migrate_job_users_post" model="data.migrate.jobs">
+            <field name="name">Users - post insert</field>
+            <field name="code">usr01_post</field>
+            <field name="description">Migrate all users and related main data after initial transfer is done</field>
+            <field name="sequence">92</field>
+        </record>
+        <record id="data_migrate_job_partners_post" model="data.migrate.jobs">
+            <field name="name">Partners - post insert</field>
+            <field name="code">part01_post</field>
+            <field name="description">Migrate Customers, Suppliers and Contacts after initial transfer is done</field>
+            <field name="sequence">93</field>
+        </record>
+        <record id="data_migrate_job_sale_orders_pre" model="data.migrate.jobs">
+            <field name="name">Quotations - Sale orders - pre insert</field>
+            <field name="code">so01_pre</field>
+            <field name="description">Migrate related Quotations and Sale orders main data</field>
+            <field name="sequence">201</field>
+        </record>
+        <record id="data_migrate_job_purchase_orders_pre" model="data.migrate.jobs">
+            <field name="name">Purchase orders - pre insert</field>
+            <field name="code">po01_pre</field>
+            <field name="description">Migrate Purchase Order's main data</field>
+            <field name="sequence">202</field>
+        </record>
+        <record id="data_migrate_job_invoice_pre" model="data.migrate.jobs">
+            <field name="name">Invoices - pre insert</field>
+            <field name="code">inv01_pre</field>
+            <field name="description">Migrate Customers's and Supplier's invoices main data</field>
+            <field name="sequence">203</field>
+        </record>
+        <record id="data_migrate_job_employees_pre" model="data.migrate.jobs">
+            <field name="name">Employees - pre insert</field>
+            <field name="code">emp01_pre</field>
+            <field name="description">Migrate employees main data</field>
+            <field name="sequence">204</field>
+        </record>
+        <record id="data_migrate_job_sale_orders" model="data.migrate.jobs">
+            <field name="name">Quotations - Sale orders</field>
+            <field name="code">so01</field>
+            <field name="description">Migrate Quotations and Sale orders</field>
+            <field name="sequence">501</field>
+        </record>
+        <record id="data_migrate_job_sale_orders_post" model="data.migrate.jobs">
+            <field name="name">Quotations - Sale orders - post insert</field>
+            <field name="code">so01_post</field>
+            <field name="description">Migrate Quotations and Sale orders post insert</field>
+            <field name="sequence">502</field>
+        </record>
+        <record id="data_migrate_job_purchase_orders" model="data.migrate.jobs">
+            <field name="name">Purchase orders</field>
+            <field name="code">po01</field>
+            <field name="description">Migrate Purchase orders</field>
+            <field name="sequence">503</field>
+        </record>
+        <record id="data_migrate_job_purchase_orders_post" model="data.migrate.jobs">
+            <field name="name">Purchase orders - post insert</field>
+            <field name="code">po01_post</field>
+            <field name="description">Migrate Purchase orders post insert</field>
+            <field name="sequence">504</field>
+        </record>
+        <record id="data_migrate_job_invoice" model="data.migrate.jobs">
+            <field name="name">Invoices</field>
+            <field name="code">inv01</field>
+            <field name="description">Migrate Customers's and Supplier's invoices</field>
+            <field name="sequence">505</field>
+        </record>
+        <record id="data_migrate_job_invoice_post" model="data.migrate.jobs">
+            <field name="name">Invoices - post insert</field>
+            <field name="code">inv01_post</field>
+            <field name="description">Migrate Customers's and Supplier's invoices - Post insert</field>
+            <field name="sequence">506</field>
+        </record>
+        <record id="data_migrate_job_employees" model="data.migrate.jobs">
+            <field name="name">Employees</field>
+            <field name="code">emp01</field>
+            <field name="description">Migrate employees</field>
+            <field name="sequence">507</field>
+        </record>
+        <record id="data_migrate_job_employees_post" model="data.migrate.jobs">
+            <field name="name">Employees post</field>
+            <field name="code">emp01_post</field>
+            <field name="description">Migrate employees post insert</field>
+            <field name="sequence">508</field>
+        </record>
+        <record id="data_migrate_job_dosar" model="data.migrate.jobs">
+            <field name="name">Dosar</field>
+            <field name="code">dosar01</field>
+            <field name="description">Migrate custom Helpan Dosar module data</field>
+            <field name="sequence">509</field>
+        </record>
+        <record id="data_migrate_job_update_sequences" model="data.migrate.jobs">
+            <field name="name">Sequences update</field>
+            <field name="code">seq_upd</field>
+            <field name="description">Updating sequences related to documents in done jobs</field>
+            <field name="sequence">999</field>
+        </record>
+    </data>
+</odoo>

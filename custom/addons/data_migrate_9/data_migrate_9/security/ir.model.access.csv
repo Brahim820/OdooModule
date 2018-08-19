@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_data_migrate_order_user,data.migrate.order.user,model_data_migrate_order,group_data_migrate_manager,1,1,1,1
+access_data_migrate_line_user,data.migrate.line.user,model_data_migrate_line,group_data_migrate_manager,1,1,1,1
+access_data_migrate_jobs_user,data.migrate.jobs.user,model_data_migrate_jobs,group_data_migrate_manager,1,1,1,1
+access_data_migrate_document_number_user,data.migrate.document.number.user,model_data_migrate_document_number,group_data_migrate_manager,1,1,1,1

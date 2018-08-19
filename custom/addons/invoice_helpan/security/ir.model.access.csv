@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_invoice_helpan_invoice_helpan,invoice_helpan.invoice_helpan,model_invoice_helpan_invoice_helpan,,1,0,0,0

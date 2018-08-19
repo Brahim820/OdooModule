@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="helpan_dosar.list">
+            <field name="name">helpan_dosar.list</field>
+            <field name="model">helpan_dosar.helpan_dosar</field>
+            <field name="arch" type="xml">
+                <tree default_order="dosarID desc">
+                    <field name="dosarID" string="Dosar ID" style="width:10%"/>
+                    <field name="name"/>
+                    <field name="DataCrearii" string="Data Crearii"/>
+                    <field name="initiator" string="Initiator"/>
+                </tree>
+            </field>
+         </record>
+
+      <!-- search view -->
+      <record model="ir.ui.view" id="helpan_dosar.search" >
+        <field name="name">helpan_dosar.search</field>
+        <field name="model">helpan_dosar.helpan_dosar</field>
+        <field eval="3" name="priority"/>
+        <field name="arch" type="xml">
+            <search string="Search Dosar">
+                  <field name="name" string="Dosar"
+                   filter_domain="['|','|',('dosarID','ilike',self), ('name','ilike',self),('initiator','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="helpan_dosar.action_window">
+      <field name="name">Dosare HELPAN</field>
+      <field name="res_model">helpan_dosar.helpan_dosar</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+        
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="helpan_dosar.action_server">
+      <field name="name">helpan_dosar server</field>
+      <field name="model_id" ref="model_helpan_dosar_helpan_dosar"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item #sales_team.menu_sales-->
+      <!-- pt odoo 9 base.menu_sales-->
+    <menuitem name="Dosare" id="helpan_dosar.menu_1" parent="base.menu_sales"
+       action="helpan_dosar.action_window" sequence="20"/>
+
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="helpan_dosar.menu_1" parent="helpan_dosar.menu_root"/>
+    <menuitem name="Menu 2" id="helpan_dosar.menu_2" parent="helpan_dosar.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="helpan_dosar.menu_1_list" parent="helpan_dosar.menu_1"
+              action="helpan_dosar.action_window"/>
+    <menuitem name="Server to list" id="helpan_dosar" parent="helpan_dosar.menu_2"
+              action="helpan_dosar.action_server"/>
+    -->
+    </data>
+</odoo>

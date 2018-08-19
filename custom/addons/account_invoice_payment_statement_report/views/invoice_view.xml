@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- customer's invoice additional print button -->
+        <record id="view_invoice_form_print_payments_spec" model="ir.ui.view">
+            <field name="name">view.invoice.form.print.payments.spec</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="invoice_print" class="oe_highlight" position="after">
+                        <button name="invoice_print_payments_specification"
+                                string="Print with statement"
+                                type="object"
+                                attrs="{'invisible':['|',('sent','=',True), ('state', '!=', 'open')]}"
+                                class="oe_highlight" groups="base.group_user"/>
+                    </button>
+                    <button name="%(account.action_account_invoice_payment)d" position="before">
+                        <button name="invoice_print_payments_specification"
+                                string="Print with statement"
+                                type="object"
+                                attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open', 'paid'))]}"
+                                groups="base.group_user"/>
+                    </button>
+                </data>
+            </field>
+        </record>
+
+    </data>
+</openerp>

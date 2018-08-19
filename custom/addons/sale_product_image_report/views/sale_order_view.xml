@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- sale order additional print button -->
+        <record id="view_order_form_print_spec" model="ir.ui.view">
+            <field name="name">sale.order.form.print.spec</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <button name="print_quotation" states="draft" position="after">
+                        <button name="print_quotation_with_spec" string="Print with spec" type="object" states="draft" class="btn-primary"/>
+                    </button>
+                    <button name="print_quotation" states="sent,sale" position="after">
+                        <button name="print_quotation_with_spec" string="Print with spec" type="object" states="sent,sale"/>
+                    </button>
+                    <xpath expr="//field[@name='order_line']/form/group" position="after">
+                        <group string="Description HTML">
+                            <field name="desc_html" nolabel="1"/>
+                        </group>
+                    </xpath>
+                    <xpath expr="//field[@name='order_line']/tree/field[@name='customer_lead']" position="after">
+                        <field name="desc_html" invisible="1"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+
+        <!-- product template form view -->
+        <record id="product_template_form_view_html_desc" model="ir.ui.view">
+            <field name="name">product.template.common.form.html.desc</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Template description HTML" name="desc_template">
+                        <field name="desc_template_html" colspan="4" nolabel="1"/>
+                    </page>
+                    <page string="Additional images" name="additional_template_images">
+                        <field name="attachment_ids" colspan="4" nolabel="1" widget="many2many_binary"/>
+                    </page>
+
+
+                </notebook>
+            </field>
+        </record>
+
+        <!-- product variant form view -->
+        <record id="product_template_only_form_view_html_desc" model="ir.ui.view">
+            <field name="name">product.product.form.html.desc</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Variant description HTML" name="desc_variant">
+                        <field name="desc_variant_html" colspan="4" nolabel="1"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>

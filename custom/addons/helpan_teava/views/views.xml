@@ -1,0 +1,117 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="helpan_teava.list">
+      <field name="name">helpan_teava list</field>
+      <field name="model">helpan_teava.helpan_teava</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+     <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="helpan_teava.list">
+            <field name="name">helpan_teava.list</field>
+            <field name="model">helpan_teava</field>
+            <field name="arch" type="xml">
+                <tree default_order="name asc">
+                  <field name="name"/>
+                  <field name="dimensiuneX"/>
+                  <field name="dimensiuneY"/>
+                  <field name="locatie"/>
+                  <field name="nrbuc" string="Nr Buc"/>
+                  <field name="state" string="Stare"/>
+                </tree>
+            </field>
+         </record>
+
+       <record model="ir.ui.view" id="helpan_teava.form">
+            <field name="name">helpan_teava.form.view</field>
+            <field name="model">helpan_teava</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2><field name="name" placeholder="Denumire"/></h2>
+                        <group string="Informatii">
+                            <field name="dimensiuneX"/>
+                            <field name="dimensiuneY"/>
+                            <field name="locatie"/>
+                            <field name="nrbuc" string="Nr Buc"/>
+                            <field name="state" string="Stare"/>
+                        </group>
+                        <group>
+                            <field name="observatie" string="Observatii"/>
+                            <field name="active" string="Activ?"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+         </record>
+
+      <!-- search view -->
+      <record model="ir.ui.view" id="helpan_dosar.search" >
+        <field name="name">helpan_teava.search</field>
+        <field name="model">helpan_teava</field>
+        <field eval="3" name="priority"/>
+        <field name="arch" type="xml">
+            <search string="Search Dosar">
+                  <field name="name" string="Informatii de teava(inclusiv observatii):"
+                   filter_domain="['|','|',('name','ilike',self), ('observatie','ilike',self),('locatie','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+      <record model="ir.actions.act_window" id="helpan_teava.action_window">
+          <field name="name">Produse de teava si bari in stocul HELPAN</field>
+          <field name="res_model">helpan_teava</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="helpan_teava.action_server">
+      <field name="name">helpan_teava server</field>
+      <field name="model_id" ref="model_helpan_teava_helpan_teava"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="helpan_teava" id="helpan_teava.menu_root"/>
+    -->
+      <!-- pt odoo 9 base.menu_sales-->
+    <menuitem name="Teava" id="helpan_teava.menu_1" parent="stock.menu_stock_warehouse_mgmt"
+       action="helpan_teava.action_window"/>
+
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="helpan_teava.menu_1" parent="helpan_teava.menu_root"/>
+    <menuitem name="Menu 2" id="helpan_teava.menu_2" parent="helpan_teava.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="helpan_teava.menu_1_list" parent="helpan_teava.menu_1"
+              action="helpan_teava.action_window"/>
+    <menuitem name="Server to list" id="helpan_teava" parent="helpan_teava.menu_2"
+              action="helpan_teava.action_server"/>
+    -->
+  </data>
+</openerp>

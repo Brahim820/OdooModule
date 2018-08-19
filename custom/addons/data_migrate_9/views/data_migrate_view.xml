@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- data migrate order -->
+        <record id="view_data_migrate_order_search" model="ir.ui.view">
+            <field name="name">data.migrate.order.search</field>
+            <field name="model">data.migrate.order</field>
+            <field name="arch" type="xml">
+                <search string="Data migration orders">
+                    <field name="other_db_server"/>
+                    <field name="other_db_name"/>
+                    <field name="other_db_port"/>
+                    <field name="other_db_user"/>
+                    <field name="other_db_pwd"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_data_migrate_order_tree" model="ir.ui.view">
+            <field name="name">data.migrate.order.tree</field>
+            <field name="model">data.migrate.order</field>
+            <field name="arch" type="xml">
+                <tree string="Data migration orders">
+                    <field name="other_db_server"/>
+                    <field name="other_db_name"/>
+                    <field name="other_db_port"/>
+                    <field name="other_db_user"/>
+                    <field name="other_db_pwd"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_data_migrate_order_form" model="ir.ui.view">
+            <field name="name">data.migrate.order.form</field>
+            <field name="model">data.migrate.order</field>
+            <field name="arch" type="xml">
+                <form string="Data migration order">
+                    <header>
+                        <button name="return_draft" string="Return to draft" type="object" states="ready,done,cancel"/>
+                        <button name="do_ready" string="Prepare" type="object" states="draft"/>
+                        <button name="do_done" string="Go Go Go" type="object" states="ready"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,ready,done,cancel"/>
+                    </header>
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <group string="Soruce database info" colspan="2">
+                                <field name="other_db_server"/>
+                                <field name="other_db_name"/>
+                                <field name="other_db_port"/>
+                                <field name="other_db_user"/>
+                                <field name="other_db_pwd"/>
+                            </group>
+                            <group colspan="2" string="Notes">
+                                <field name="notes" nolabel="1" colspan="4"/>
+                            </group>
+                        </group>
+                        <group colspan="4" string="Migration jobs">
+                            <field name="line_ids" nolabel="1">
+                                <tree string="Jobs" editable="bottom">
+                                    <field name="job_id"/>
+                                    <field name="sequence" readonly="1"/>
+                                    <field name="state" readonly="1"/>
+                                    <!--
+                                    <button name="run_job" string="Run" type="object" states="pending"/>
+                                    <button name="pending" string="Reset to Pending" type="object" states="pending,done,cancel"/>
+                                    <button name="cancel" string="Cancel" type="object" states="pending,done"/>
+                                    -->
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                    </form>
+            </field>
+        </record>
+        <record id="action_data_migrate_order" model="ir.actions.act_window">
+            <field name="name">Data migration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">data.migrate.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_data_migrate_order_search"/>
+        </record>
+        <menuitem action="action_data_migrate_order"
+            id="menu_data_migrate_order" parent="base.menu_administration"
+            groups="group_data_migrate_manager"/>
+    </data>
+</openerp>

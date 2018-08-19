@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- helpan dosar -->
+        <record id="view_helpan_dosar_search" model="ir.ui.view">
+            <field name="name">helpan.dosar.search</field>
+            <field name="model">helpan.dosar</field>
+            <field name="arch" type="xml">
+                <search string="Helpan dosare">
+                    <field name="name"/>
+                    <field name="internal_identify"/>
+                    <field name="date_created"/>
+                    <field name="initiator"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_helpan_dosar_tree" model="ir.ui.view">
+            <field name="name">helpan.dosar.tree</field>
+            <field name="model">helpan.dosar</field>
+            <field name="arch" type="xml">
+                <tree string="Helpan dosare">
+                    <field name="name"/>
+                    <field name="internal_identify"/>
+                    <field name="date_created"/>
+                    <field name="initiator"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_helpan_dosar_form" model="ir.ui.view">
+            <field name="name">helpan.dosar.form</field>
+            <field name="model">helpan.dosar</field>
+            <field name="arch" type="xml">
+                <form string="Helpan dosar">
+                     <header>
+                        <button name="do_toggle_done" type="object" string="Togggle Done" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <group colspan="2">
+                                <field name="name"/>
+                                <field name="internal_identify"/>
+                            </group>
+                            <group colspan="2">
+                                <field name="date_created"/>
+                                <field name="initiator"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    </form>
+            </field>
+        </record>
+        <record id="action_helpan_dosar" model="ir.actions.act_window">
+            <field name="name">Dosare</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">helpan.dosar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_helpan_dosar_search"/>
+        </record>
+        <!-- buton type action - poate fi server action , window action
+        name="%(action_view_sale_advance_payment_inv)d"
+E.g. https://github.com/odoo/odoo/blob/8.0/addons/sale/sale_view.xml#L87-L88
+        button type=workfow - triggers trnazitia
+        buton type object - definesc metoda si aia e
+        <button class="oe_inline oe_stat_button" type="object" string="buton"
+                                     confirm="Are you sure you want to do this?"
+                                     name="sincronizeaza_eda" icon="fa-star"/>
+                                     -->
+         <record id="view_invoice_form_print_payments_spec" model="ir.ui.view">
+            <field name="name">base.view_partner_form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_geolocalize.view_crm_partner_geo_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//form//sheet//notebook//page//group//button[@name='geo_localize']" position="after">
+                        <group name="first" string="Informatii Sincronizare">
+
+                             <field name="swan_ID"/>
+                             <field name="esteSincronizatEDA" string="Este Sincronizat?"/>
+                        </group>
+                         <!--     -->
+                    </xpath>
+                   <!--  <xpath expr="///form/sheet/field[@name='image']" position="after">
+
+                    </xpath>
+                       -->
+                </data>
+            </field>
+        </record>
+
+
+        <menuitem action="action_helpan_dosar"
+            id="menu_helpan_dosar" parent="sales_team.menu_sales"
+            groups="group_helpan_user"/>
+    </data>
+</openerp>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_invoice_document_inherit_payment_statement" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@class='page']" position="inside">
+                <div class="row">
+                    <t t-if="o.payments_report_data()[o.resolve_invoice_partner(o.partner_id)]">
+                        <p style="page-break-before:always;"> </p>
+                        <t t-if="o.print_payment_spec == True">
+                                 <h2><span>Customer account statement</span></h2>
+                        <table class="table table-condensed" t-if="o.print_payment_spec == True" t-foreach="o.report_statement_lines[o.resolve_invoice_partner(o.partner_id)]" t-as="currency">
+                            <thead>
+                                <tr>
+                                    <th>Reference number</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Due Date</th>
+                                    <th class="text-center">Overdue days</th>
+                                    <th class="text-right">Due</th>
+                                    <th class="text-right">Paid</th>
+                                    <th class="text-center">Litigation</th>
+                                </tr>
+                            </thead>
+                            <tr t-foreach="o.report_statement_lines[o.resolve_invoice_partner(o.partner_id)][currency]" t-as="line">
+                                <td>
+                                    <span t-esc="line['move_id']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['date']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['date_maturity']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="line['diff']"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="line['debit']" t-options="{'widget': 'monetary', 'display_currency': currency}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="line['credit']" t-options="{'widget': 'monetary', 'display_currency': currency}"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-if="line['blocked']">x</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td><strong>Subtotal :</strong></td>
+                                <td class="text-right"><span t-esc="o.report_statement_totals[o.resolve_invoice_partner(o.partner_id)][currency]['due']" t-options="{'widget': 'monetary', 'display_currency': currency}"/></td>
+                                <td class="text-right"><span t-esc="o.report_statement_totals[o.resolve_invoice_partner(o.partner_id)][currency]['paid']" t-options="{'widget': 'monetary', 'display_currency': currency}"/></td>
+                                <td class="text-right"><span t-esc="o.report_statement_totals[o.resolve_invoice_partner(o.partner_id)][currency]['mat']" t-options="{'widget': 'monetary', 'display_currency': currency}"/></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3"></td>
+                                <td><strong>Balance :</strong></td>
+                                <td class="text-right">
+                                    <span t-esc="o.report_statement_totals[o.resolve_invoice_partner(o.partner_id)][currency]['due'] - o.report_statement_totals[o.resolve_invoice_partner(o.partner_id)][currency]['paid']" t-options="{'widget': 'monetary', 'display_currency': currency}"/>
+                                </td>
+                            </tr>
+                        </table>
+                        </t>
+
+                    </t>
+                    <p t-if="not o.report_statement_lines[o.resolve_invoice_partner(o.partner_id)]">
+                        <strong>There is nothing due with this customer.</strong>
+                    </p>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

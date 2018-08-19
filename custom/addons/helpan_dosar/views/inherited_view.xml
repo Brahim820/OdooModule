@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- purchase order -->
+
+        <record model="ir.ui.view" id="helpan_dosar_po_inherit_form">
+            <field name="name">helpan.dosar.purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+				<field name="company_id" position="after">
+					<field name="dosar_id" />
+                    <field name="team_id"/>
+                </field>
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <field name="dosar_id" />
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='order_line']/form/sheet/group/group/field[@name='price_unit']" position="after">
+                    <field name="dosar_id" />
+                </xpath>
+            </field>
+        </record>
+
+
+         <!-- account tax -->
+        <record model="ir.ui.view" id="helpan_dosar_account_inherit_form">
+            <field name="name">helpan.dosar.account.view_tax_form.inherit</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//notebook/page/group/group/field[@name='refund_account_id']" position="after">
+                    <field name="swanTVAID" />
+                </xpath>
+            </field>
+        </record>
+        <!-- account account -->
+        <record model="ir.ui.view" id="helpan_dosar_account_account_inherit_form">
+            <field name="name">helpan.dosar.account.account_form.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//sheet/group/group/field[@name='deprecated']" position="after">
+                    <field name="swanContID" />
+                </xpath>
+            </field>
+        </record>
+
+        <!-- crm team -->
+        <record model="ir.ui.view" id="helpan_dosar_crm_team_inherit_form">
+            <field name="name">helpan.dosar.crm_team_form.inherit</field>
+            <field name="model">crm.team</field>
+            <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//notebook/page//group/field[@name='company_id']" position="after">
+                    <field name="ContFacturi" />
+                </xpath>
+            </field>
+        </record>
+
+                <!-- res.partener -->
+        <record model="ir.ui.view" id="helpan_dosar_customer_sync_inherit_form">
+            <field name="name">helpan.dosar.customersync.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/*" position="before">
+                     <header>
+                         <button name="sincronizeazaEDA" type="object" string="Sincronizeaza EDA"
+                                 class="oe_highlight"
+                                 attrs="{'invisible':['|',('esteSincronizatEDA','=',True)]}"/> <!-- nu afisa
+                                 butonul daca e partenerul este sincronizat -->
+                     </header>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Nu am reusit sa ii dau de cap - trebuie sa afisez cursul EUR - RON -->
+         <!-- account.invoice base.view_partner_form la inherit_id
+        <record model="ir.ui.view" id="helpan_dosar_invoice_exchange_inherit_form">
+            <field name="name">helpan.dosar.exchange.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group[1]" position="inside">
+                    <field name="dosar_id" />
+                    <field name="ExchangeRateEurRON options="{'no_create': True, 'no_open': True}" class="oe_inline" on_change="1" can_create="true" can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft']]], 'required': true}" />
+                </xpath>
+            </field>
+        </record>
+         options="{'no_create': True, 'no_open': True}" class="oe_inline" on_change="1" can_create="true"
+        can_write="true" modifiers="{'readonly': [['state', 'not in', ['draft']]], 'required': true}" -->
+    
+        <!-- account.invoice base.view_partner_form la inherit_id-->
+        <record model="ir.ui.view" id="helpan_dosar_invoice_sync_inherit_form">
+            <field name="name">helpan.dosar.invoicesync.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/header/*" position="after">
+
+                         <button name="sincronizeazaEDA" type="object" string="Sincronizeaza EDA"
+                                 class="oe_highlight"
+                                 /> <!-- nu afisa
+                                 attrs="{'invisible':['|',('esteSincronizatEDA','=',True)]}" butonul daca e
+                                 partenerul este sincronizat -->
+                     
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>
