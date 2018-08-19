@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="action_afiseaza_chitante" model="ir.actions.act_window">
+            <field name="name">Chitante</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.payment</field>
+            <field name="views">tree,form</field>
+            <field name="limit">5</field>
+            <field name="domain">[('communication','=',number)]</field>
+            <field name="search_view_id" ref="account.view_account_payment_search"/>
+            <field name="src_model">account.payment</field>
+              <field name="target">current</field>
+        </record>
+
+        <record model="ir.ui.view" id="chitante_form_inherit_form">
+            <field name="name">account_voucher_report.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+               <data>
+                      <button name="invoice_print" class="oe_highlight" position="after">
+                     
+                      <!-- nu afisa
+                                 butonul daca e nu este plata facuta  groups="account.group_account_invoice"-->
+                           <button name="%(action_afiseaza_chitante)d" type='action' string='Afiseaza Chitante'
+                            groups="account.group_account_invoice"       states='paid'
+                            context="{'number': number}"/>
+                      </button>
+                </data>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,5 +1,11 @@
 <odoo>
-  <data>
+  <data> 
+
+    <!-- Top menu item #sales_team.menu_sales-->
+      <!-- pt odoo 9 base.menu_sales-->
+    <menuitem name="Dosare" id="helpan_produs.menu_1" parent="base.menu_board_root"
+       action="account.action_invoice_tree1" sequence="20"/>
+
     <!-- explicit list view definition -->
     <!--
     <record model="ir.ui.view" id="helpan_produs.list">

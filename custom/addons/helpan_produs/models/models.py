@@ -1,6 +1,21 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from openerp import api, fields, models, _, osv
+from odoo.exceptions import UserError
+import psycopg2
+import logging
+_logger = logging.getLogger(__name__)
+
+
+class helpan_produs(models.Model):
+    _name = 'helpan_produs.helpan_produs'
+    _rec_name = "dosarID"
+    _order = 'dosarID DESC'
+    name = fields.Char()
+    dosarID=fields.Integer(string="Dosar ID",help="Identificare Dosar")
+    DataCrearii=fields.Date()
+    initiator=fields.Char()
+
 
 # class helpan_produs(models.Model):
 #     _name = 'helpan_produs.helpan_produs'

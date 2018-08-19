@@ -49,6 +49,8 @@
 
 				<div class="row" id='bank_info'>
 					<div class="col-xs-5">
+					</div>
+					<div class="col-xs-5">
 						<div t-foreach="res_company.partner_id.bank_ids" t-as="bank">
 							<t t-if="bank.footer">
 								<div t-if="bank.bank_name">
@@ -78,19 +80,7 @@
 
 
 				<div class="row" id='vat_info'>
-					<div class="col-xs-5">
-						<div t-if="res_company.partner_id.vat">
-							<strong>CIF:</strong>
-							<span t-field="res_company.partner_id.vat" />
-						</div>
-						<div t-if="res_company.partner_id.nrc">
-							<strong>NRC:</strong>
-							<span t-field="res_company.partner_id.nrc" />
-						</div>
-						<div t-if="res_company.share_capital">
-							<strong>Share Capital:</strong>
-							<span t-field="res_company.share_capital" />
-						</div>
+					<div class="col-xs-5"> 
 					</div>
 					<div class="col-xs-5 col-xs-offset-2">
 						<div t-if="o.commercial_partner_id.vat">
@@ -239,8 +229,7 @@
 
 				</div>
 			</xpath>
-		</template>
-
+		</template
 
 	</data>
 </openerp>
